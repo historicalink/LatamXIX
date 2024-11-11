@@ -1,10 +1,16 @@
 # LatamXIX: Spanish Newspaper Corpus from 19th Century Latin America with LLM OCR Correction
 
-**Authors:** Tony Montes, Rubén Manrique, Laura Manrique
+**Authors:** Tony Montes, Rubén Manrique, Laura Manrique, Arturo Rodriguez
+
+## Running the Azure layout and OCR model
+
+1. Copy the dataset in the NEWSPAPERS folder, the dataset must be folders with PDF files or image files
+2. Run `PDF_preprocessing.ipynb`, The output folder data will be populated with the processed files.
+3. Run `Layout_OCR.ipynb`
 
 ## Previous Steps
 
-First, a *raw* version of the dataset is on a `/raw` folder within the `/data` folder. This folder contains all the folders with the JSON files extracted from the Azure's OCR for each Newspaper; for example, the folder `/data/raw/PD168_El_oso_results` contains a set of JSON files with the format:
+First, a _raw_ version of the dataset is on a `/raw` folder within the `/data` folder. This folder contains all the folders with the JSON files extracted from the Azure's OCR for each Newspaper; for example, the folder `/data/raw/PD168_El_oso_results` contains a set of JSON files with the format:
 
 ```json
 {
@@ -23,11 +29,11 @@ First, a *raw* version of the dataset is on a `/raw` folder within the `/data` f
 			"bounding_box": [43.0, 159.0, 496.0, 1496.0],
 			"center": [269.5, 827.5]
 		}
-    ]
+	]
 }
 ```
 
-## Steps 
+## Steps
 
 ### 1. Structuring
 
@@ -50,5 +56,3 @@ Finally, for the OCR correction with LLM there are 3 notebooks that must be ran 
 1. [`get-llm-responses.ipynb`](./correcting/get-llm-responses.ipynb): Get the LLM responses from the correction requests for each text in the cleaned dataset.
 2. [`get-corrections.ipynb`](./correcting/get-corrections.ipynb): From the LLM responses, find each correction made individually in order to later classify it between OCR error, surface form or none. Also, in this step, an initial OCR-correction detection is done for the most basic case.
 3. [`classify-corrections.ipynb`](./correcting/classify-corrections.ipynb): Classify the corrections made by the LLM in the previous step, based on hardcoded rules and exceptions.
-
-
